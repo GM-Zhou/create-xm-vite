@@ -1,4 +1,4 @@
-import { readdirSync, stat } from 'fs';
+import { statSync, cpSync } from 'fs';
 import { blue, green } from 'kolorist';
 import path from 'path';
 import prompts from 'prompts';
@@ -20,7 +20,10 @@ const templates = [
   },
 ];
 
-const terminalPath = process.env.PWD;
+const copy = (src: string, dest: string) => {
+  const state = statSync(src);
+  cpSync(src, dest, { recursive: state.isDirectory() });
+};
 
 const createProject = async () => {
   try {
@@ -42,10 +45,11 @@ const createProject = async () => {
       },
     ]);
     console.log('result', result);
-    const targetDir = `${terminalPath}/${result.project}`;
+    const targetDir = `${__dirname}/${result.project}`;
     const templateDir = path.resolve(__dirname, `templates/${result.template}`);
     console.log('targetDir', targetDir);
     console.log('templateDir', templateDir);
+    copy(templateDir, targetDir);
   } catch (error) {
     console.log(error);
   }
