@@ -6,7 +6,8 @@
     "create-xm-vite": "lib/index.js"
   },
   "scripts": {
-    "build": "unbuild"
+    "build": "unbuild",
+    "pub": "pnpm build && pnpm publish"
   },
   "keywords": [],
   "author": "",
