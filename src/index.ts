@@ -3,6 +3,7 @@ import { statSync, cpSync, writeFileSync, readFileSync } from 'fs';
 import { blue, green, yellow } from 'kolorist';
 import path from 'path';
 import prompts from 'prompts';
+import { execa } from 'execa';
 
 /**
  * 解析命令行，确定项目名称和模板类型
@@ -66,10 +67,11 @@ const createProject = async () => {
 
     // 成功提示
     console.log(green(`Project ${result.project} created successfully!`));
-    console.log(yellow('Please run:'));
-    console.log(yellow(`cd ${result.project}`));
-    console.log(yellow('pnpm install'));
-    console.log(yellow('pnpm dev'));
+    // 开始下载依赖
+    console.log(yellow('Installing dependencies...'));
+    execa('pnpm', ['install'], { cwd: targetDir, stdio: 'inherit' }).then(() => {
+      console.log(green('Dependencies installed successfully!'));
+    });
   } catch (error) {
     // console.log(error);
   }
