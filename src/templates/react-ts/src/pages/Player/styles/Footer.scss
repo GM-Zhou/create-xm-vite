@@ -1,0 +1,40 @@
+@mixin footer {
+  .footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 72px;
+    font-size: 15px;
+    color: #909090;
+    background-color: #f2f2f2;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+
+    p {
+      padding-right: 8px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      margin-bottom: 2px;
+      font-size: 18px;
+      color: #fff;
+      background-color: darken($color-primary, $amount: 2%);
+      border-radius: 30px;
+      box-shadow:
+        0 2px 4px rgb(0 0 0 / 15%),
+        0 0 2px rgb(0 0 0 / 12%);
+      transition: 0.3s;
+
+      &:active {
+        background-color: lighten($color-primary, 10%);
+        box-shadow: none;
+      }
+    }
+  }
+}

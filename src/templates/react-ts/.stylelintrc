@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "stylelint-config-ali",
+    "stylelint-config-recess-order"
+  ],
+  "rules": {
+    "selector-max-id": null
+  }
+}

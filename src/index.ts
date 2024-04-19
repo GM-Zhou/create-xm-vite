@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { statSync, cpSync } from 'fs';
 import { blue, green } from 'kolorist';
 import path from 'path';
@@ -19,6 +20,8 @@ const templates = [
     color: blue,
   },
 ];
+
+const cwd = process.cwd();
 
 const copy = (src: string, dest: string) => {
   const state = statSync(src);
@@ -44,11 +47,9 @@ const createProject = async () => {
         })),
       },
     ]);
-    console.log('result', result);
-    const targetDir = `${__dirname}/${result.project}`;
-    const templateDir = path.resolve(__dirname, `templates/${result.template}`);
-    console.log('targetDir', targetDir);
-    console.log('templateDir', templateDir);
+    const targetDir = `${cwd}/${result.project}`;
+    const templateDir = path.resolve(__dirname, `../src/templates/${result.template}`);
+
     copy(templateDir, targetDir);
   } catch (error) {
     console.log(error);
