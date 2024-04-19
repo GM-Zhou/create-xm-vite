@@ -1,6 +1,6 @@
 {
   "name": "create-xm-vite",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "bin": {
     "create-xm-vite": "lib/index.js"
@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.12.7",
     "@types/prompts": "^2.4.9",
     "@typescript-eslint/eslint-plugin": "^7.7.0",

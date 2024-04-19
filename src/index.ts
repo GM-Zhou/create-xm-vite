@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { statSync, cpSync } from 'fs';
+import { statSync, cpSync, writeFileSync, readFileSync } from 'fs';
 import { blue, green, yellow } from 'kolorist';
 import path from 'path';
 import prompts from 'prompts';
@@ -51,6 +51,25 @@ const createProject = async () => {
     const templateDir = path.resolve(__dirname, `../src/templates/${result.template}`);
 
     copy(templateDir, targetDir);
+    // 修改 package.json
+    const packageJsonPath = `${targetDir}/package.json`;
+    const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
+    Object.assign(packageJson, {
+      name: result.project,
+      version: '1.0.0',
+      description: '',
+      author: '',
+      private: true,
+    });
+
+    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+
+    // 成功提示
+    console.log(green(`Project ${result.project} created successfully!`));
+    console.log(yellow('Please run:'));
+    console.log(yellow(`cd ${result.project}`));
+    console.log(yellow('pnpm install'));
+    console.log(yellow('pnpm dev'));
   } catch (error) {
     // console.log(error);
   }
