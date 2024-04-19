@@ -59,9 +59,9 @@ export const addQuery = (url: string, query: Obj) => {
   if (isObj(query)) {
     const entries = Object.entries(query);
     if (entries.length > 0) {
-      const query = entries.map(([k, v]) => `${k}=${v}`).join('&');
-      if (url.includes('?')) newUrl = `${url}&${query}`;
-      else newUrl = `${url}?${query}`;
+      const queryStr = entries.map(([k, v]) => `${k}=${v}`).join('&');
+      if (url.includes('?')) newUrl = `${url}&${queryStr}`;
+      else newUrl = `${url}?${queryStr}`;
     }
   }
   return newUrl;
