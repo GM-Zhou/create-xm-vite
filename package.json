@@ -1,6 +1,6 @@
 {
   "name": "create-xm-vite",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "bin": {
     "create-xm-vite": "lib/index.js"

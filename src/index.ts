@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { statSync, cpSync } from 'fs';
-import { blue, green } from 'kolorist';
+import { blue, green, yellow } from 'kolorist';
 import path from 'path';
 import prompts from 'prompts';
 
@@ -34,7 +34,7 @@ const createProject = async () => {
       {
         type: 'text',
         name: 'project',
-        message: 'Project name:',
+        message: yellow('Project name:'),
         initial: 'xm-vite-project',
       },
       {
@@ -52,7 +52,7 @@ const createProject = async () => {
 
     copy(templateDir, targetDir);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 

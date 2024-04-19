@@ -5,10 +5,9 @@ export default function classnames(...params: Array<string | Obj | undefined>) {
   let cls = '';
   params.forEach((param) => {
     if (param) {
-      if (typeof param === 'string' && param) cls += ` ${param}`;
+      if (param && typeof param === 'string') cls += ` ${param}`;
       else if (isObj(param)) {
-        Object.keys(param).forEach((k) => {
-          const v = param[k];
+        Object.entries(param).forEach(([k, v]) => {
           if (v) cls += ` ${k}`;
         });
       }
