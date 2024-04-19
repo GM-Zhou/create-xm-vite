@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "bin": {
-    "xm-create-vite": "lib/index.js"
+    "create": "lib/index.js"
   },
   "scripts": {
     "build": "unbuild"
