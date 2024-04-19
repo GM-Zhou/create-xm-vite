@@ -1,9 +1,9 @@
 {
   "name": "xm-create-vite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "bin": {
-    "create": "lib/index.js"
+    "xm-create-vite": "lib/index.js"
   },
   "scripts": {
     "build": "unbuild"
