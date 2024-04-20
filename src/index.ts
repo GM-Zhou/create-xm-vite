@@ -15,11 +15,11 @@ const { blue, green, yellow } = pc;
 
 const templates = [
   {
-    name: 'vue-ts',
+    name: 'vue-ts-h5',
     color: green,
   },
   {
-    name: 'react-ts',
+    name: 'react-ts-h5',
     color: blue,
   },
 ];
@@ -38,7 +38,7 @@ const createProject = async () => {
         type: 'text',
         name: 'project',
         message: yellow('Project name:'),
-        initial: 'xm-vite-project',
+        initial: `project-${Date.now()}`,
       },
       {
         type: 'select',

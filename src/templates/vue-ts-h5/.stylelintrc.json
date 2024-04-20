@@ -1,0 +1,41 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recommended-scss",
+    "stylelint-config-recommended-vue/scss",
+    "stylelint-config-html/vue",
+    "stylelint-config-recess-order"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.{htm,html,vue}"
+      ],
+      "customSyntax": "postcss-html"
+    },
+    {
+      "files": [
+        "**/*.{css,scss}"
+      ],
+      "customSyntax": "postcss-scss"
+    }
+  ],
+  "ignoreFiles": [
+    "dist/**"
+  ],
+  "rules": {
+    "import-notation": null,
+    "scss/no-global-function-names": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "global",
+          "export",
+          "v-deep",
+          "deep"
+        ]
+      }
+    ]
+  }
+}
