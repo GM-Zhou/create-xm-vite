@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { statSync, cpSync, writeFileSync, readFileSync } from 'fs';
-import { blue, green, yellow } from 'kolorist';
+import pc from 'picocolors';
 import path from 'path';
 import prompts from 'prompts';
 import { execa } from 'execa';
@@ -10,6 +10,8 @@ import { execa } from 'execa';
  * copy 模板文件到项目目录
  * 修改 package.json 中，name 等参数
  */
+
+const { blue, green, yellow } = pc;
 
 const templates = [
   {

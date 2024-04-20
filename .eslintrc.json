@@ -16,6 +16,11 @@
     "plugins": [
         "@typescript-eslint"
     ],
+    "ignorePatterns": [
+        "dist",
+        "node_modules",
+        "lib"
+    ],
     "rules": {
         "no-console": 1
     }

@@ -34,8 +34,8 @@ export default defineBuildConfig({
   outDir: 'lib',
   rollup: {
     output: {
-      format: 'cjs',
-      entryFileNames: '[name].js',
+      format: "cjs",
+      entryFileNames: '[name].cjs',
     },
   },
 });
