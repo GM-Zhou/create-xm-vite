@@ -1,6 +1,6 @@
 {
   "name": "create-xm-vite",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "",
   "bin": {
     "create-xm-vite": "lib/index.cjs"
@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/index.mjs --action build",
-    "publish": "node scripts/index.mjs --action publish"
+    "pub": "node scripts/index.mjs --action pub"
   },
   "keywords": [],
   "author": "",

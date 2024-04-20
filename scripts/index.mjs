@@ -17,7 +17,7 @@ const build = async () => {
   }
 };
 
-const publish = async () => {
+const pub = async () => {
   try {
     const result = await build();
     if (result) execa('pnpm', ['publish'], { stdio: 'inherit' });
@@ -30,7 +30,7 @@ const executor = () => {
   const args = minimist(process.argv.slice(2));
   const { action } = args;
   if (action === 'build') build();
-  else if (action === 'publish') publish();
+  else if (action === 'pub') pub();
 };
 
 executor();
