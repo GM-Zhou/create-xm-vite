@@ -58,8 +58,10 @@ const createProject = async () => {
     ]);
     const targetDir = `${cwd}/${result.project}`;
     const templateDir = path.resolve(__dirname, `../src/templates/${result.template}`);
+    const commonDir = path.resolve(__dirname, '../src/common');
 
     copy(templateDir, targetDir);
+    copy(commonDir,`${targetDir}/src`);
     // 修改 package.json
     const packageJsonPath = `${targetDir}/package.json`;
     const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
