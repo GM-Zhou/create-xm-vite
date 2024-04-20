@@ -76,8 +76,8 @@ const createProject = async () => {
     // 成功提示
     console.log(green(`Project ${result.project} created successfully!`));
     // 开始下载依赖
-    console.log(yellow('Installing dependencies...'));
     if (result.download) {
+      console.log(yellow('Installing dependencies...'));
       execa('pnpm', ['install'], { cwd: targetDir, stdio: 'inherit' }).then(() => {
         console.log(green('Dependencies installed successfully!'));
       });
