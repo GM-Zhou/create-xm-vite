@@ -49,6 +49,12 @@ const createProject = async () => {
           value: template.name,
         })),
       },
+      {
+        type: 'confirm',
+        name: 'download',
+        message: 'Do you want to download dependencies?',
+        initial: true,
+      },
     ]);
     const targetDir = `${cwd}/${result.project}`;
     const templateDir = path.resolve(__dirname, `../src/templates/${result.template}`);
@@ -71,9 +77,11 @@ const createProject = async () => {
     console.log(green(`Project ${result.project} created successfully!`));
     // 开始下载依赖
     console.log(yellow('Installing dependencies...'));
-    execa('pnpm', ['install'], { cwd: targetDir, stdio: 'inherit' }).then(() => {
-      console.log(green('Dependencies installed successfully!'));
-    });
+    if (result.download) {
+      execa('pnpm', ['install'], { cwd: targetDir, stdio: 'inherit' }).then(() => {
+        console.log(green('Dependencies installed successfully!'));
+      });
+    }
   } catch (error) {
     // console.log(error);
   }

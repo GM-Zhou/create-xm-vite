@@ -1,18 +1,18 @@
 {
   "name": "create-xm-vite",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "",
   "bin": {
     "create-xm-vite": "lib/index.cjs"
   },
   "type": "module",
   "scripts": {
-    "build": "node scripts/index.mjs --action build",
-    "pub": "node scripts/index.mjs --action pub"
+    "build": "node scripts/index.js --action build",
+    "pub": "node scripts/index.js --action pub"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "ISC",  
   "devDependencies": {
     "@types/node": "^20.12.7",
     "@types/prompts": "^2.4.9",
