@@ -34,8 +34,12 @@ export default defineBuildConfig({
   outDir: 'lib',
   rollup: {
     output: {
-      format: "cjs",
-      entryFileNames: '[name].cjs',
+      format: 'es',
+      entryFileNames: '[name].js',
+    },
+    esbuild: {
+      minify: true,
+      target: 'ESNEXT',
     },
   },
 });

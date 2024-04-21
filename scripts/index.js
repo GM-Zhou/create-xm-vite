@@ -1,6 +1,6 @@
 import { execa } from 'execa';
-import pc from 'picocolors';
 import minimist from 'minimist';
+import pc from 'picocolors';
 
 const { gray, green } = pc;
 

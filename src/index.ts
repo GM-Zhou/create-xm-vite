@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-import { statSync, cpSync, writeFileSync, readFileSync } from 'fs';
-import pc from 'picocolors';
-import path from 'path';
-import prompts from 'prompts';
 import { execa } from 'execa';
+import { cpSync, readFileSync,statSync, writeFileSync } from 'fs';
+import { dirname, join } from 'path';
+import pc from 'picocolors';
+import prompts from 'prompts';
+import { fileURLToPath } from 'url';
 
 /**
  * 解析命令行，确定项目名称和模板类型
@@ -13,7 +14,7 @@ import { execa } from 'execa';
 
 const { blue, green, yellow } = pc;
 
-const templates = [
+const templates = [ 
   {
     name: 'vue-ts-h5',
     color: green,
@@ -56,12 +57,13 @@ const createProject = async () => {
         initial: true,
       },
     ]);
+    const pathDir = dirname(fileURLToPath(import.meta.url));
     const targetDir = `${cwd}/${result.project}`;
-    const templateDir = path.resolve(__dirname, `../src/templates/${result.template}`);
-    const commonDir = path.resolve(__dirname, '../src/common');
+    const templateDir = join(pathDir, `../src/templates/${result.template}`);
+    const commonDir = join(pathDir, '../src/common');
 
     copy(templateDir, targetDir);
-    copy(commonDir,`${targetDir}/src`);
+    copy(commonDir, `${targetDir}/src`);
     // 修改 package.json
     const packageJsonPath = `${targetDir}/package.json`;
     const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
