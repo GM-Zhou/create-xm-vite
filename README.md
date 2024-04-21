@@ -5,15 +5,3 @@
 ```zsh
 pnpm create xm-vite@latest
 ```
-
-也可以使用 npm
-
-```zsh
-npm init xm-vite@latest
-```
-
-或 yarn
-
-```zsh
-yarn create xm-vite@latest
-```
