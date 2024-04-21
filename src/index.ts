@@ -1,10 +1,11 @@
 #!/usr/bin/env node
+import { cpSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import { execa } from 'execa';
-import { cpSync, readFileSync,statSync, writeFileSync } from 'fs';
-import { dirname, join } from 'path';
 import pc from 'picocolors';
 import prompts from 'prompts';
-import { fileURLToPath } from 'url';
 
 /**
  * 解析命令行，确定项目名称和模板类型
@@ -14,7 +15,7 @@ import { fileURLToPath } from 'url';
 
 const { blue, green, yellow } = pc;
 
-const templates = [ 
+const templates = [
   {
     name: 'vue-ts-h5',
     color: green,
