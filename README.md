@@ -3,15 +3,15 @@
 推荐使用 pnpm
 
 ```zsh
-pnpm create xm-vite@latest
+pnpm create xm-vite
 ```
 
 ```zsh
-npm create xm-vite@latest
+npx create xm-vite
 ```
 
 ```zsh
-yarn create xm-vite@latest
+yarn create xm-vite
 ```
 
 - 根据开发环境反向代理
