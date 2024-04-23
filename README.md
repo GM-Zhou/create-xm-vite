@@ -6,6 +6,14 @@
 pnpm create xm-vite@latest
 ```
 
+```zsh
+npm create xm-vite@latest
+```
+
+```zsh
+yarn create xm-vite@latest
+```
+
 - 根据开发环境反向代理
 - vite 5.x
 - vue 3.x

@@ -10,8 +10,9 @@ export default defineBuildConfig({
       format: 'es',
       entryFileNames: '[name].js',
     },
-    // esbuild: {
-    //   minify: true,
-    // },
+    esbuild: {
+      minify: true,
+      target: 'ESNEXT',
+    },
   },
 });

@@ -1,6 +1,6 @@
 {
   "name": "create-xm-vite",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "ximalaya vite cli",
   "keywords": [
     "vite",
@@ -19,7 +19,7 @@
   "author": "",
   "type": "module",
   "bin": {
-    "create-xm-vite": "lib/index.cjs"
+    "create-xm-vite": "lib/index.js"
   },
   "scripts": {
     "build": "node scripts/index.js --action build",
