@@ -1,6 +1,6 @@
 {
   "name": "create-xm-vite",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "description": "ximalaya vite cli",
   "keywords": [
     "vite",
@@ -10,17 +10,22 @@
     "typescript",
     "node"
   ],
+  "homepage": "https://github.com/GM-Zhou/create-xm-vite",
   "repository": {
     "type": "git",
     "url": "https://github.com/GM-Zhou/create-xm-vite"
   },
-  "homepage": "https://github.com/GM-Zhou/create-xm-vite",
   "license": "ISC",
   "author": "",
   "type": "module",
   "bin": {
     "create-xm-vite": "lib/index.js"
   },
+  "files": [
+    "lib",
+    "src/common",
+    "src/templates"
+  ],
   "scripts": {
     "build": "node scripts/index.js --action build",
     "pub": "node scripts/index.js --action pub"
