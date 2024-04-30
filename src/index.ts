@@ -47,9 +47,9 @@ const copy = (src: string, dest: string) => {
 const checkManager = async () => {
   let manager = 'npm';
   const checkPnpm = await execa('pnpm', ['--version']);
-  if (!checkPnpm.failed) manager = 'pnpm';
   const checkYarn = await execa('yarn', ['--version']);
-  if (!checkYarn.failed) manager = 'yarn';
+  if (!checkPnpm.failed) manager = 'pnpm';
+  else if (!checkYarn.failed) manager = 'yarn';
   return manager;
 };
 
