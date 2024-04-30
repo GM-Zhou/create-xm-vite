@@ -20,6 +20,13 @@ const upgrade = () => {
 
 const build = async () => {
   try {
+    // git 脚本
+
+    await execa('git', ['add', '.'], { stdio: 'inherit' });
+    await execa('git', ['commit', '-m', `chore: upgrade version to `], {
+      stdio: 'inherit',
+    });
+    execa('git', ['push'], { stdio: 'inherit' });
     const buildWorker = await execa('pnpm', ['unbuild'], { stdio: 'inherit' });
     if (buildWorker.exitCode === 0) console.log(green('build success!'));
     return buildWorker;
