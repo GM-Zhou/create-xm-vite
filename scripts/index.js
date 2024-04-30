@@ -18,7 +18,7 @@ const upgrade = async () => {
   writeFileSync('package.json', JSON.stringify(packageJson, null, 2));
   // git 脚本
   await execa('git', ['add', '.'], { stdio: 'inherit' });
-  await execa('git', ['commit', '-m', `chore: upgrade version to `], {
+  await execa('git', ['commit', '-m', `chore: upgrade version to ${newVersion}`], {
     stdio: 'inherit',
   });
   await execa('git', ['push'], { stdio: 'inherit' });
