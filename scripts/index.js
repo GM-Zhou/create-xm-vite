@@ -5,7 +5,7 @@ import pc from 'picocolors';
 
 const { gray, green } = pc;
 
-const upgrade = () => {
+const upgrade = async () => {
   const packageJson = JSON.parse(readFileSync('package.json', 'utf-8'));
   const { version } = packageJson;
   const newVersion = version
@@ -16,17 +16,16 @@ const upgrade = () => {
 
   packageJson.version = newVersion;
   writeFileSync('package.json', JSON.stringify(packageJson, null, 2));
+  // git 脚本
+  await execa('git', ['add', '.'], { stdio: 'inherit' });
+  await execa('git', ['commit', '-m', `chore: upgrade version to `], {
+    stdio: 'inherit',
+  });
+  await execa('git', ['push'], { stdio: 'inherit' });
 };
 
 const build = async () => {
   try {
-    // git 脚本
-
-    await execa('git', ['add', '.'], { stdio: 'inherit' });
-    await execa('git', ['commit', '-m', `chore: upgrade version to `], {
-      stdio: 'inherit',
-    });
-    execa('git', ['push'], { stdio: 'inherit' });
     const buildWorker = await execa('pnpm', ['unbuild'], { stdio: 'inherit' });
     if (buildWorker.exitCode === 0) console.log(green('build success!'));
     return buildWorker;
@@ -40,8 +39,9 @@ const pub = async () => {
   try {
     const buildWorker = await build();
     if (buildWorker.exitCode === 0) {
-      upgrade();
-      execa('pnpm', ['publish', '--no-git-checks'], { stdio: 'inherit' });
+      await upgrade();
+      const pubWorker = await execa('pnpm', ['publish', '--no-git-checks'], { stdio: 'inherit' });
+      return !pubWorker.failed;
     }
   } catch (error) {
     console.log(gray(error));
