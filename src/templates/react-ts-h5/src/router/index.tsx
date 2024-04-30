@@ -10,6 +10,7 @@ export default function Router() {
       <HashRouter>
         <Routes>
           <Route path='home' element={<Home />} />
+          <Route path='404' element={<NotFound />} />
           <Route path='/' element={<Navigate to='home' replace />} />
           <Route path='*' element={<Navigate to='NotFound' replace />} />
         </Routes>
