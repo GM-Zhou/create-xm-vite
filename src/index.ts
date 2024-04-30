@@ -43,6 +43,16 @@ const copy = (src: string, dest: string) => {
   cpSync(src, dest, { recursive: state.isDirectory() });
 };
 
+// 检查 pnpm,npm,yarn
+const checkManager = async () => {
+  let manager = 'npm';
+  const checkPnpm = await execa('pnpm', ['--version']);
+  if (!checkPnpm.failed) manager = 'pnpm';
+  const checkYarn = await execa('yarn', ['--version']);
+  if (!checkYarn.failed) manager = 'yarn';
+  return manager;
+};
+
 const createProject = async () => {
   try {
     const result = await prompts([
@@ -94,7 +104,9 @@ const createProject = async () => {
     // 开始下载依赖
     if (result.download) {
       console.log(pc.yellow('Installing dependencies...'));
-      execa('pnpm', ['install'], { cwd: targetDir, stdio: 'inherit' }).then(() => {
+      const manager = await checkManager();
+      console.log(pc.yellow(`Using ${manager} as package manager`));
+      execa(manager, ['install'], { cwd: targetDir, stdio: 'inherit' }).then(() => {
         console.log(pc.green('Dependencies installed successfully!'));
       });
     }
