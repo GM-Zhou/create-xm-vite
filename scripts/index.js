@@ -1,8 +1,22 @@
 import { execa } from 'execa';
+import { readFileSync, writeFileSync } from 'fs';
 import minimist from 'minimist';
 import pc from 'picocolors';
 
 const { gray, green } = pc;
+
+const upgrade = () => {
+  const packageJson = JSON.parse(readFileSync('package.json', 'utf-8'));
+  const { version } = packageJson;
+  const newVersion = version
+    .split('.')
+    .map(Number)
+    .map((v, i) => (i === 2 ? v + 1 : 0))
+    .join('.');
+
+  packageJson.version = newVersion;
+  writeFileSync('package.json', JSON.stringify(packageJson, null, 2));
+};
 
 const build = async () => {
   try {
@@ -18,7 +32,10 @@ const build = async () => {
 const pub = async () => {
   try {
     const buildWorker = await build();
-    if (buildWorker.exitCode === 0) execa('pnpm', ['publish', '--no-git-checks'], { stdio: 'inherit' });
+    if (buildWorker.exitCode === 0) {
+      upgrade();
+      execa('pnpm', ['publish', '--no-git-checks'], { stdio: 'inherit' });
+    }
   } catch (error) {
     console.log(gray(error));
   }

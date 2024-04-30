@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { cpSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { cpSync, readFileSync, renameSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -84,8 +84,10 @@ const createProject = async () => {
       author: '',
       private: true,
     });
-
     writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+    // 重命名_gitignore文件
+    const _gitignorePath = `${targetDir}/_gitignore`;
+    renameSync(_gitignorePath, `${targetDir}/.gitignore`);
 
     // 成功提示
     console.log(pc.green(`Project ${result.project} created successfully!`));
